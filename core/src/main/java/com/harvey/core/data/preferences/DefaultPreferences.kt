@@ -1,4 +1,4 @@
-package com.harvey.core.domain
+package com.harvey.core.data.preferences
 
 import android.content.SharedPreferences
 import com.harvey.core.domain.model.ActivityLevel
