@@ -11,8 +11,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.harvey.core.navigation.Route
+import com.harvey.onboarding_presentation.activity.ActivityScreen
 import com.harvey.onboarding_presentation.age.AgeScreen
 import com.harvey.onboarding_presentation.gender.GenderScreen
+import com.harvey.onboarding_presentation.goal.GoalScreen
 import com.harvey.onboarding_presentation.height.HeightScreen
 import com.harvey.onboarding_presentation.weight.WeightScreen
 import com.harvey.onboarding_presentation.welcome.WelcomeScreen
@@ -61,8 +63,12 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(Route.NUTRIENT_GOAL) {}
-                        composable(Route.ACTIVITY) {}
-                        composable(Route.GOAL) {}
+                        composable(Route.ACTIVITY) {
+                            ActivityScreen(onNavigate = navController::navigate)
+                        }
+                        composable(Route.GOAL) {
+                            GoalScreen(onNavigate = navController::navigate)
+                        }
                         composable(Route.TRACKER_OVERVIEW) {}
                         composable(Route.SEARCH) {}
                     }
