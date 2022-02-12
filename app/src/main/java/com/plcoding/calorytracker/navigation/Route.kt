@@ -1,4 +1,4 @@
-package com.harvey.core.navigation
+package com.plcoding.calorytracker.navigation
 
 object Route {
     const val WELCOME = "welcome"

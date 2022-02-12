@@ -1,6 +1,5 @@
 package com.harvey.tracker_presentation.tracker_overview.components
 
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

@@ -10,7 +10,6 @@ import com.harvey.tracker_domain.model.TrackedFood
 import com.harvey.tracker_domain.repository.TrackerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.lang.Exception
 import java.time.LocalDate
 
 class TrackerRepositoryImpl(
@@ -30,7 +29,16 @@ class TrackerRepositoryImpl(
                 pageSize = pageSize
             )
             Result.success(
-                searchDto.products.mapNotNull { it.toTrackableFood() }
+                searchDto.products
+                    .filter {
+                        val calculatedCalories = it.nutriments.carbohydrates100g * 4f +
+                                it.nutriments.proteins100g * 4f +
+                                it.nutriments.fat100g * 9f
+                        val lowerBound = calculatedCalories * 0.99f
+                        val upperBound = calculatedCalories * 1.01f
+                        it.nutriments.energyKcal100g in (lowerBound..upperBound)
+                    }
+                    .mapNotNull { it.toTrackableFood() }
             )
         } catch(e: Exception) {
             e.printStackTrace()
